@@ -11,10 +11,6 @@ const AuthMenuItems = ({ setIsOpen, link }) => {
   return (
     <MainAuthModel>
       <Button
-        onClick={(e) => {
-          e.preventDefault();
-          setIsOpen(false)
-        }}
         className="inline-block py-2 px-2 bg-gradient-1 text-center text-white font-semibold rounded-sm transition-transform duration-300 ease-in-out hover:transform hover:translate-y-[-3px] hover:bg-[#4338ca]"
       >
         {link.label}
