@@ -4,6 +4,24 @@ import { Menu, X } from "lucide-react";
 import { Card, CardContent } from "./ui/card";
 import { Separator } from "./ui/separator";
 import ToogleTheme from "./ToogleTheme";
+import MainAuthModel from "@/pages/Auth/MainAuthModel";
+import { Button } from "./ui/button";
+
+const AuthMenuItems = ({ setIsOpen, link }) => {
+  return (
+    <MainAuthModel>
+      <Button
+        onClick={(e) => {
+          e.preventDefault();
+          setIsOpen(false)
+        }}
+        className="inline-block py-2 px-2 bg-gradient-1 text-center text-white font-semibold rounded-sm transition-transform duration-300 ease-in-out hover:transform hover:translate-y-[-3px] hover:bg-[#4338ca]"
+      >
+        {link.label}
+      </Button>
+    </MainAuthModel>
+  );
+};
 
 const MobileMenu = ({ links, setIsOpen }) => {
   return (
@@ -12,25 +30,26 @@ const MobileMenu = ({ links, setIsOpen }) => {
         <div className="flex flex-col">
           {links.map((link, index) => (
             <div key={index} className="mt-2">
-              <a
-                href={link.href}
-                onClick={
-                  link.onClick
-                    ? (e) => {
-                        e.preventDefault();
-                        link.onClick();
-                        setIsOpen(false);
-                      }
-                    : () => setIsOpen(false)
-                }
-                className={
-                  link?.ctmStyles === "auth-button"
-                    ? "inline-block py-2 px-2 bg-gradient-1 text-center text-white font-semibold rounded-sm transition-transform duration-300 ease-in-out hover:transform hover:translate-y-[-3px] hover:bg-[#4338ca]"
-                    : "text-textPrimary dark:text-dark-textPrimary no-underline font-light transition-colors duration-300 ease-in-out hover:text-accent py-2"
-                }
-              >
-                {link.label}
-              </a>
+              {
+                link?.ctmStyles === "auth-button" ? <AuthMenuItems setIsOpen={setIsOpen} link={link} />
+                : (
+                  <a
+                    href={link.href}
+                    onClick={
+                      link.onClick
+                        ? (e) => {
+                            e.preventDefault();
+                            link.onClick();
+                            setIsOpen(false);
+                          }
+                        : () => setIsOpen(false)
+                    }
+                    className={"text-textPrimary dark:text-dark-textPrimary no-underline font-light transition-colors duration-300 ease-in-out hover:text-accent py-2"}
+                  >
+                    {link.label}
+                  </a>
+                )
+              }
               {index < links.length - 1 && <Separator />}{" "}
             </div>
           ))}
@@ -44,26 +63,29 @@ const MainMenu = ({ links, setIsOpen }) => {
   return (
     <div className="hidden lg:flex lg:flex-row lg:ml-auto lg:items-center ml-10 space-x-5">
       {links.map((link, index) => (
-        <a
-          key={index}
-          href={link.href}
-          onClick={
-            link.onClick
-              ? (e) => {
-                  e.preventDefault();
-                  link.onClick();
-                  setIsOpen(false);
+        <>
+          {
+            link?.ctmStyles === "auth-button" ? <AuthMenuItems setIsOpen={setIsOpen} link={link} />
+            : (
+              <a
+                key={index}
+                href={link.href}
+                onClick={
+                  link.onClick
+                    ? (e) => {
+                        e.preventDefault();
+                        link.onClick();
+                        setIsOpen(false);
+                      }
+                    : () => setIsOpen(false)
                 }
-              : () => setIsOpen(false)
+                className={"text-textPrimary dark:text-dark-textPrimary no-underline font-light transition-colors duration-300 ease-in-out hover:text-accent py-2"}
+              >
+                {link.label}
+              </a>
+            )
           }
-          className={
-            link?.ctmStyles === "auth-button"
-              ? "inline-block py-2 px-2 text-center bg-gradient-1 text-white font-semibold rounded-sm transition-transform duration-300 ease-in-out hover:transform hover:translate-y-[-3px] hover:bg-[#4338ca]"
-              : "text-textPrimary dark:text-dark-textPrimary no-underline font-light transition-colors duration-300 ease-in-out hover:text-accent py-2 lg:py-0"
-          }
-        >
-          {link.label}
-        </a>
+        </>
       ))}
       <ToogleTheme />
     </div>
@@ -72,10 +94,6 @@ const MainMenu = ({ links, setIsOpen }) => {
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleAuthModal = () => {
-    // Open or close the modal
-  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -91,7 +109,6 @@ const Navbar = () => {
     {
       href: "",
       label: "Login / Sign Up",
-      onClick: toggleAuthModal,
       ctmStyles: "auth-button",
     },
   ];

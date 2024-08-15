@@ -14,7 +14,7 @@ const App = () => {
               element={<route.element />}
             />
           ))}
-          <Route path="*" element={<p className="text-white">404 Not Found</p>} />
+          <Route path="*" element={<p className="flex text-2xl font-semibold text-white h-[100vh] justify-center items-center">404 Not Found</p>} />
         </Routes>
       </BrowserRouter>
     </>
