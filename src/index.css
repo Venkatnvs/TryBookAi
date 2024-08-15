@@ -64,14 +64,18 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+  }
+
+  .dark body {
+    @apply bg-dark-background;
   }
 }
 
 :root {
-    --gradient-1: linear-gradient(45deg, #726bff, #57b6fe);
-    --gradient-2: linear-gradient(45deg, #8a2be2, #4b0082);
-  }
+  --gradient-1: linear-gradient(45deg, #726bff, #57b6fe);
+  --gradient-2: linear-gradient(45deg, #8a2be2, #4b0082);
+}
 
 .highlight {
     background: var(--gradient-2);
@@ -89,3 +93,7 @@
     height: 3px;
     background: var(--gradient-1);
   }
+
+body {
+  line-height: 1.6;
+}

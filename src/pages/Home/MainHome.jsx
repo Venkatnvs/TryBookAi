@@ -17,7 +17,7 @@ import ThreeJsBackGround from "../../components/ThreeJsBackGround";
 const MainHome = () => {
   return (
     <>
-      <div className="w-[90%] max-w-[1400px] mx-auto p-5">
+      <div className="lg:w-[90%] max-w-[1400px] mx-auto p-5">
         <Navbar />
 
         <ThreeJsBackGround />

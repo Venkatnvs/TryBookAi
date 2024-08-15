@@ -21,7 +21,7 @@ module.exports = {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
+        background: "#f4f4f4",
         foreground: "hsl(var(--foreground))",
         primary: {
           DEFAULT: "hsl(var(--primary))",
@@ -56,6 +56,7 @@ module.exports = {
         textSecondary: '#555555',
         
         // Dark mode colors
+        'dark-background': '#1e0533',
         'dark-primaryBg': '#1e0533',
         'dark-textPrimary': '#ffffff',
         'dark-textSecondary': '#b3b3b3',

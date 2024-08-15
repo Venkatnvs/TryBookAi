@@ -1,32 +1,30 @@
-import React from 'react'
+import React from 'react';
 
-const TestimonalItem = ({text, author}) => {
+const TestimonalItem = ({ text, author }) => {
   return (
-    <div className="bg-[rgba(255,255,255,0.05)] rounded-lg p-5 mt-5 basis-[calc(50%-20px)] transition-transform duration-300 ease-in-out hover:transform hover:translate-y-[-5px]">
-      <p>{text}</p>
-      <p><strong>- {author}</strong></p>
+    <div className="bg-accent dark:bg-[#ffffff0d] rounded-lg p-6 mt-5 w-full sm:w-[calc(50%-20px)] transition-transform duration-300 ease-in-out hover:translate-y-[-5px]">
+      <p className="text-lg mb-4 text-primaryBg">{`"`}{text}{`"`}</p>
+      <p className="font-semibold text-primaryBg">- {author}</p>
     </div>
-  )
-}
+  );
+};
 
 const Testimonal = () => {
   return (
-    <section className="mt-20 text-center">
-        <h2 className='mb-10 text-2xl text-white text-center font-semibold'>What Our Users Say</h2>
-        <div className="flex justify-between flex-wrap mt-10">
-          <TestimonalItem
-            text={`"BookAI revolutionized my writing process. I completed my debut
-            novel in just two weeks!"`}
-            author="Sarah J., Author"
-          />
-          <TestimonalItem
-            text={`"The AI-generated ideas helped me overcome writer's block. It's
-            like having a co-author at your fingertips."`}
-            author="Mark T., Aspiring Writer"
-          />
-        </div>
-      </section>
-  )
-}
+    <section className="mt-20 px-4 text-center">
+      <h2 className="mb-5 text-3xl font-semibold">What Our Users Say</h2>
+      <div className="flex flex-wrap justify-center gap-6">
+        <TestimonalItem
+          text="BookAI revolutionized my writing process. I completed my debut novel in just two weeks!"
+          author="Sarah J., Author"
+        />
+        <TestimonalItem
+          text="The AI-generated ideas helped me overcome writer's block. It's like having a co-author at your fingertips."
+          author="Mark T., Aspiring Writer"
+        />
+      </div>
+    </section>
+  );
+};
 
-export default Testimonal
+export default Testimonal;

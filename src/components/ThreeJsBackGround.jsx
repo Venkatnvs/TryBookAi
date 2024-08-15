@@ -37,8 +37,8 @@ const ThreeJsBackGround = () => {
       new THREE.BufferAttribute(posArray, 3)
     );
 
-    const darkColor = 0xffffff; // White for dark mode
-    const lightColor = 0x000000; // Black for light mode
+    const darkColor = 0xffffff;
+    const lightColor = 0x000000;
 
     const particlesMaterial = new THREE.PointsMaterial({
       size: 0.005,
@@ -46,6 +46,19 @@ const ThreeJsBackGround = () => {
       transparent: true,
       opacity: 0.8,
     });
+
+    function updateMaterialColor() {
+      const isDarkMode = document.documentElement.classList.contains('dark');
+      particlesMaterial.color.set(isDarkMode ? darkColor : lightColor);
+    }
+
+    const observer = new MutationObserver(updateMaterialColor);
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
+
+    updateMaterialColor();
 
     const particlesMesh = new THREE.Points(
       particlesGeometry,
